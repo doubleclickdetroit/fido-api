@@ -6,6 +6,10 @@ gem 'rails', '4.2.4'
 gem 'rails-api'
 
 
+# Gemfile
+gem 'devise', '~> 3.4.1'
+
+
 # ActiveModel Serializers
 gem "active_model_serializers", "~> 0.8.0"
 

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+
+  devise_for :users, controllers: { sessions: 'sessions' }
+
   resources :occasions, except: [:new, :edit]
   resources :contacts, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
