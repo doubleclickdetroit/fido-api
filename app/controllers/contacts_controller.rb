@@ -12,7 +12,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-    render json: @contact
+    render json: { contact: @contact, occasions: @contact.occasions }
   end
 
   # POST /contacts
