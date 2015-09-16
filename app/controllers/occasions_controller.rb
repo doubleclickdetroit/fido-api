@@ -4,7 +4,7 @@ class OccasionsController < ApplicationController
   # GET /occasions
   # GET /occasions.json
   def index
-    @occasions = Occasion.all
+    @occasions = current_user.occasions
 
     render json: @occasions
   end
@@ -18,7 +18,7 @@ class OccasionsController < ApplicationController
   # POST /occasions
   # POST /occasions.json
   def create
-    @occasion = Occasion.new(occasion_params)
+    @occasion = current_user.occasions.new(occasion_params)
 
     if @occasion.save
       render json: @occasion, status: :created, location: @occasion
@@ -30,8 +30,6 @@ class OccasionsController < ApplicationController
   # PATCH/PUT /occasions/1
   # PATCH/PUT /occasions/1.json
   def update
-    @occasion = Occasion.find(params[:id])
-
     if @occasion.update(occasion_params)
       head :no_content
     else
@@ -50,7 +48,7 @@ class OccasionsController < ApplicationController
   private
 
     def set_occasion
-      @occasion = Occasion.find(params[:id])
+      @occasion = current_user.occasions.find(params[:id])
     end
 
     def occasion_params

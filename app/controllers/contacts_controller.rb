@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts
 
     render json: @contacts
   end
@@ -18,7 +18,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(contact_params)
+    @contact = current_user.contacts.new(contact_params)
 
     if @contact.save
       render json: @contact, status: :created, location: @contact
@@ -30,8 +30,6 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
-    @contact = Contact.find(params[:id])
-
     if @contact.update(contact_params)
       head :no_content
     else
@@ -50,7 +48,7 @@ class ContactsController < ApplicationController
   private
 
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = current_user.contacts.find(params[:id])
     end
 
     def contact_params
