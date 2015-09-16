@@ -16,6 +16,10 @@ gem "active_model_serializers", "~> 0.8.0"
 gem 'active-model-adapter-source', '~>1.13'
 
 
+# Responders
+gem 'responders'
+
+
 # Rack CORS
 gem 'rack-cors', require: 'rack/cors'
 

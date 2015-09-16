@@ -1,5 +1,11 @@
+require "application_responder"
+
 class ApplicationController < ActionController::API
+  self.responder = ApplicationResponder
+  respond_to :json
+
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  include ActionController::ImplicitRender
 
   before_filter :authenticate_user_from_token!
 

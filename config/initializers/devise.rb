@@ -15,6 +15,11 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
+  # If using rails-api, you may want to tell devise to not use ActionDispatch::Flash
+  # middleware b/c rails-api does not include it.
+  # See: http://stackoverflow.com/q/19600905/806956
+  config.navigational_formats = [:json]
+
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be

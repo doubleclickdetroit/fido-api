@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'sessions', registrations: 'registrations' }
+  devise_for :users, defaults: { format: :json }, controllers: { sessions: 'sessions', registrations: 'registrations' }
   # Devise Registration Create # http://www.unknownerror.org/opensource/rails-api/rails-api/q/stackoverflow/16901023/rails-api-gem-and-devise-token-authentication
   # Stripe Integration         # http://www.sitepoint.com/stripe-subscriptions-rails/
 
