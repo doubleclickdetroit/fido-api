@@ -9,6 +9,9 @@ gem 'rails-api'
 # Gemfile
 gem 'devise', '~> 3.4.1'
 
+# Stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 
 # ActiveModel Serializers
 gem "active_model_serializers", "~> 0.8.0"
