@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_one :subscription, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :occasions, through: :contacts
 
