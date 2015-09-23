@@ -3,7 +3,7 @@ class CreateSubscriptions < ActiveRecord::Migration
     create_table :subscriptions do |t|
       t.references :user, index: true, foreign_key: true
       t.string :stripe_token
-      t.integer :quantity
+      t.integer :quantity, null: false, default: 3
 
       t.timestamps null: false
     end

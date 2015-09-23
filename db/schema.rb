@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922022523) do
+ActiveRecord::Schema.define(version: 20150923023950) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "first_name"
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20150922022523) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "stripe_token"
-    t.integer  "quantity"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "quantity",             default: 3, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.date     "current_period_start"
+    t.date     "current_period_end"
   end
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
