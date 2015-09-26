@@ -5,7 +5,7 @@ class OccasionsController < ApplicationController
   # GET /occasions.json
   def index
     @occasions = current_user.occasions
-    render json: @occasions.current
+    render json: @occasions
   end
 
   # GET /occasions/1
