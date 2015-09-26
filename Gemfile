@@ -5,6 +5,8 @@ gem 'rails', '4.2.4'
 
 gem 'rails-api'
 
+gem 'byebug'
+
 
 # Gemfile
 gem 'devise', '~> 3.4.1'

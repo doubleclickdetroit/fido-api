@@ -4,6 +4,10 @@ class Occasion < ActiveRecord::Base
 
   before_save :ensure_date_is_future
 
+  scope :current, ->(start_date, end_date) {
+    where("date between ? and ?", start_date, end_date)
+  }
+
   private
     def ensure_date_is_future
       today = Date.today

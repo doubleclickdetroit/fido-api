@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923023950) do
+ActiveRecord::Schema.define(version: 20150925150401) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "first_name"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20150923023950) do
     t.datetime "updated_at",                       null: false
     t.date     "current_period_start"
     t.date     "current_period_end"
+    t.string   "customer_id"
+    t.string   "subscription_id"
   end
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"

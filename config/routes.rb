@@ -4,8 +4,7 @@ Rails.application.routes.draw do
     controllers: { sessions: 'sessions', registrations: 'registrations' }
   }
 
-  post 'subscription_checkout' => 'subscription#subscription_checkout'
-
+  resource :subscription, only: [:create, :show]
   resources :occasions, except: [:new, :edit]
   resources :contacts, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
