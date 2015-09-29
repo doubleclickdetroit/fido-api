@@ -11,4 +11,8 @@ class SessionsController < Devise::SessionsController
       render json: data, status: 201 and return
     end
   end
+
+  def show
+    render json: current_user
+  end
 end

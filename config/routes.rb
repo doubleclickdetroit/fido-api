@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     controllers: { sessions: 'sessions', registrations: 'registrations' }
   }
 
+  devise_scope :user do
+    get "/users" => "sessions#show"
+  end
+
   resource :subscription, only: [:create, :show]
   resources :occasions, except: [:new, :edit]
   resources :contacts, except: [:new, :edit]
