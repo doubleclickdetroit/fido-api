@@ -32,7 +32,12 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'spring', :group => :development
 
 
-gem 'sqlite3'
+gem 'sqlite3', group: :development
+
+
+group :production do
+  gem "pg"
+end
 
 
 
