@@ -34,13 +34,11 @@ class Subscription < ActiveRecord::Base
     price        = subscription.plan.amount * quantity
     current_period_start = Time.at(subscription.current_period_start).to_date
     current_period_end   = Time.at(subscription.current_period_end).to_date
-    next_billing_date    = current_period_end + 1.day
 
     {
       price: price,
       current_period_start: current_period_start,
-      current_period_end: current_period_end,
-      next_billing_date: next_billing_date
+      current_period_end: current_period_end
     }
   end
 
