@@ -15,6 +15,46 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def credit_cards
+    customer = Stripe::Customer.retrieve( customer_id )
+    cards = customer.sources.all(limit: 3, object: 'card')
+    cards.data.map do |card|
+      {
+        id: card.id,
+        brand: card.brand,
+        last4: card.last4,
+        exp_month: card.exp_month,
+        exp_year: card.exp_year
+      }
+    end
+  end
+
+  def details
+    subscription = get_stripe_subscription
+    price        = subscription.plan.amount * quantity
+    current_period_start = Time.at(subscription.current_period_start).to_date
+    current_period_end   = Time.at(subscription.current_period_end).to_date
+    next_billing_date    = current_period_end + 1.day
+
+    {
+      price: price,
+      current_period_start: current_period_start,
+      current_period_end: current_period_end,
+      next_billing_date: next_billing_date
+    }
+  end
+
+  def invoices
+    invoices = Stripe::Invoice.all( limit: 5, customer: customer_id )
+    invoices.map do |invoice|
+      {
+        id: invoice.id,
+        date: Time.at(invoice.date).to_date,
+        total: invoice.total
+      }
+    end
+  end
+
   private
     def set_quantity
       self.quantity = products.count
@@ -37,9 +77,13 @@ class Subscription < ActiveRecord::Base
       self.current_period_end = subscription.current_period_end
     end
 
-    def update_stripe_subscription
-      customer = Stripe::Customer.retrieve(stripe_token)
+    def get_stripe_subscription
+      customer = Stripe::Customer.retrieve(customer_id)
       subscription = customer.subscriptions.retrieve(subscription_id)
+    end
+
+    def update_stripe_subscription
+      subscription = get_stripe_subscription
       subscription.quantity = products.count
       subscription.save
     end

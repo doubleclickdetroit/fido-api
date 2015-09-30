@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get "/users" => "sessions#show"
+    get '/users' => 'sessions#show'
   end
 
-  resource :subscription, only: [:create, :show]
+  get  '/subscription'              => 'subscriptions#show'
+  get  '/subscription/invoices'     => 'subscriptions#show_invoices'
+  get  '/subscription/credit_cards' => 'subscriptions#show_cards'
+  post '/subscription/credit_cards' => 'subscriptions#add_card'
+
+  resource :subscription, only: [:create]
   resources :occasions, except: [:new, :edit]
   resources :contacts, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
