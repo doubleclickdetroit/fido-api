@@ -1,12 +1,12 @@
 if Rails.env == 'production'
   Rails.configuration.stripe = {
-    :publishable_key => CONFIG[:stripe_publishable_key],
-    :secret_key      => CONFIG[:stripe_secret_key]
+    :publishable_key => ENV['STRIPE_PUBLISHABLE_KEY'],
+    :secret_key      => ENV['STRIPE_API_KEY']
   }
 else
   Rails.configuration.stripe = {
-    :publishable_key => CONFIG[:stripe_publishable_key],
-    :secret_key      => CONFIG[:stripe_secret_key]
+    :publishable_key => ENV['STRIPE_PUBLISHABLE_KEY'],
+    :secret_key      => ENV['STRIPE_API_KEY']
   }
 end
 

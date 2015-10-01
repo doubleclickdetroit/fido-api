@@ -7,6 +7,8 @@ gem 'rails-api'
 
 gem 'byebug'
 
+gem 'figaro'
+
 
 # Gemfile
 gem 'devise', '~> 3.4.1'
