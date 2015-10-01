@@ -37,7 +37,7 @@ gem 'spring', :group => :development
 gem 'sqlite3', group: :development
 
 
-group :production do
+group :staging, :production do
   gem "pg"
 end
 
