@@ -71,8 +71,8 @@ class Subscription < ActiveRecord::Base
         quantity: quantity
       )
       self.subscription_id = subscription.id
-      self.current_period_start = subscription.current_period_start
-      self.current_period_end = subscription.current_period_end
+      self.current_period_start = Time.at(subscription.current_period_start)
+      self.current_period_end = Time.at(subscription.current_period_end)
     end
 
     def get_stripe_subscription
