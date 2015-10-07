@@ -31,7 +31,7 @@ class Subscription < ActiveRecord::Base
 
   def details
     subscription = get_stripe_subscription
-    price        = subscription.plan.amount * quantity
+    price        = subscription.plan.amount * user.occasions.count #until quantity gets updated from PUT
     current_period_start = Time.at(subscription.current_period_start).to_date
     current_period_end   = Time.at(subscription.current_period_end).to_date
 
