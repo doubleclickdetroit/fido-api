@@ -36,6 +36,7 @@ class Subscription < ActiveRecord::Base
     current_period_end   = Time.at(subscription.current_period_end).to_date
 
     {
+      id: id,
       price: price,
       current_period_start: current_period_start,
       current_period_end: current_period_end
