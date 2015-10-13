@@ -4,8 +4,9 @@ class SessionsController < Devise::SessionsController
   def create
     super do |user|
       data = {
+        email: user.email,
         token: user.authentication_token,
-        email: user.email
+        is_activated: user.subscription.present?
       }
 
       render json: data, status: 201 and return
